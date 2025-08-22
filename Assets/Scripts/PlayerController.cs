@@ -50,4 +50,5 @@ public class PlayerController : MonoBehaviour
     {
         lookingVector = lookValue.Get<Vector2>();
     }
+
 }
