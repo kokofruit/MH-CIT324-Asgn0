@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class LanternController : MonoBehaviour
 {
-    public float emissionAmplifier;
-    Color originalEmissionColor;
+    public float increaseSpeed;
+    public float maxBrightness;
+
+    // max distance the lantern detects the player at
+    float maxDistance;
+    // material of the lit part of the latern
     Material lightMaterial;
+    // original color of the lit part of the latern
+    Color originalEmissionColor;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,13 +34,17 @@ public class LanternController : MonoBehaviour
             lightMaterial = renderer.materials[1];
             originalEmissionColor = lightMaterial.GetColor("_EmissionColor");
         }
+
+        maxDistance = GetComponent<SphereCollider>().radius;
     }
 
     void OnTriggerStay(Collider other)
     {
-        // subtract distance from max distance
-        float distance = 8 - Vector3.Distance(transform.position, other.transform.position);
-        // modify intensity by distance and amplifier
-        lightMaterial.SetColor("_EmissionColor", originalEmissionColor * emissionAmplifier * distance);
+        // find distance from max player
+        float distance = Vector3.Distance(transform.position, other.transform.position);
+        distance = Mathf.Clamp(distance, 0, maxDistance);
+        // modify light intensity by distance and amplifiers
+        lightMaterial.SetColor("_EmissionColor", originalEmissionColor * ((increaseSpeed * distance) + maxBrightness));
+        print(lightMaterial.GetColor("_EmissionColor"));
     }
 }

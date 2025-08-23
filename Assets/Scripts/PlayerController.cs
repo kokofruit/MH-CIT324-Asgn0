@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     // the turning speed of the player
     public float turnSpeed;
-    // determines the maximum turning speed for the player, to somewhat reduce choppiness
-    public float maxTurnDistance;
 
     // charactercontroller component
     private CharacterController characterController;
@@ -32,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // rotate the player to look left and right
-        transform.Rotate(Time.deltaTime * turnSpeed * new Vector3(0, Mathf.Clamp(lookingVector.x, -maxTurnDistance, maxTurnDistance), 0));
+        transform.Rotate(Time.deltaTime * turnSpeed * new Vector3(0, lookingVector.x, 0));
 
         // change the movement vector to be relative to the player's forward facing direction
         Vector3 relMovementVector = transform.TransformDirection(new Vector3(movementVector.x, gravity, movementVector.y));

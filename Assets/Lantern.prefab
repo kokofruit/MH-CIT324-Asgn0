@@ -2850,7 +2850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8921a233520b694b981ac9f57e57d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emissionAmplifier: 1
+  increaseSpeed: -1.5
+  maxBrightness: 13
 --- !u!135 &6201656237337081864
 SphereCollider:
   m_ObjectHideFlags: 0
