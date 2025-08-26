@@ -1,3 +1,6 @@
+// Moth Harper
+// Controls the player by handling user input
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     void OnLook(InputValue lookValue)
     {
+        // store looking input in a vector
         lookingVector = lookValue.Get<Vector2>();
     }
 

@@ -1,9 +1,14 @@
+// Moth Harper
+// Controls the lamp behavior by manipulating the emission based on player proximity.
+
 using System.Linq;
 using UnityEngine;
 
 public class LanternController : MonoBehaviour
 {
+    // the amount the light increases/decreases per unit of distance
     public float increaseSpeed;
+    // the maximum intensity for the lamp to reach
     public float maxBrightness;
 
     // max distance the lantern detects the player at
@@ -28,6 +33,7 @@ public class LanternController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        // cache the emission material 
         Renderer renderer = GetComponent<Renderer>();
         if (renderer.materials.Length >= 1)
         {
@@ -35,6 +41,7 @@ public class LanternController : MonoBehaviour
             originalEmissionColor = lightMaterial.GetColor("_EmissionColor");
         }
 
+        // cache the max distance
         maxDistance = GetComponent<SphereCollider>().radius;
     }
 
